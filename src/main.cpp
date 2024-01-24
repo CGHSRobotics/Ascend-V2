@@ -86,7 +86,7 @@ void autonomous() {
   ace::reset_launcher(ace::LAUNCH_SPEED);
   ace::reset_motors();
   ace::intake_toggle(ace::intake_enabled);
-  ace::auton::score_inv();
+  ace::auton::skills();
   // ace::auton::skills();
   ace::intake_pneu_toggle(ace::intake_pneu_enabled);
   /*
@@ -179,6 +179,9 @@ void opcontrol() {
       ace::launch_long_enabled = ace::btn_launch_long.get_press();
     */
 
+    if (ace::btn_lift.get_press_new()) {
+      ace::lift_enabled = !ace::lift_enabled;
+    }
     // Flapjack Enabled
     if (ace::btn_flap.get_press_new()) {
       ace::flap_enabled = !ace::flap_enabled;
@@ -252,6 +255,8 @@ void opcontrol() {
     /* ------------------------------ User Control ------------------------------ */
 
     for (int i = 0; i < 1; i++) {
+      ace::lift_toggle(ace::lift_enabled);
+
       ace::auto_target(ace::auto_targeting_enabled);
 
       // Launch

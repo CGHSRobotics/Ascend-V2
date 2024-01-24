@@ -198,9 +198,9 @@ void launch(float speed) {
   if (launcher_timer.done()) {
     launcherMotor.move_voltage(0);
     */
-  launcherMotor.move_voltage(speed * -120);
+  launcherMotor.move_voltage(speed * 120);
   pros::delay(100);
-  launcherMotor.move_voltage(speed * -120);
+  launcherMotor.move_voltage(speed * 120);
 
   // Second option
   /*
@@ -304,6 +304,18 @@ void intake_pneu_toggle(bool enabled) {
   }
 }
 
+void lift_toggle(bool enabled) {
+  if (enabled) {
+    liftPneumaticsone.set_value(1);
+    pros::delay(45);
+    liftPneumaticstwo.set_value(1);
+    return;
+
+  } else {
+    liftPneumaticsone.set_value(0);
+    liftPneumaticstwo.set_value(0);
+  }
+}
 void launch_speed_toggle(bool enabled) {
   if (enabled) {
     ace::launch_speed = 55.0;

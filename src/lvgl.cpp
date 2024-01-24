@@ -275,8 +275,8 @@ static void init_styles() {
 
   // Style for Screen
   lv_style_copy(&style_screen, &lv_style_plain);
-  style_screen.body.main_color = LV_COLOR_BLACK;
-  style_screen.body.grad_color = LV_COLOR_BLACK;
+  style_screen.body.main_color = LV_COLOR_GRAY;
+  style_screen.body.grad_color = LV_COLOR_GRAY;
 
   // Style for text
   lv_style_copy(&style_text, &lv_style_pretty);
