@@ -101,10 +101,10 @@ namespace ace {
   { INTERNAL_ADI_PORT, 'B' }
 
 #define PORT_PNEU_LIFT_2 \
-  { INTERNAL_ADI_PORT, 'A' }
+  { INTERNAL_ADI_PORT, 'G' }
 
 #define PORT_PNEU_FLAP \
-  { INTERNAL_ADI_PORT, 'G' }
+  { INTERNAL_ADI_PORT, 'A' }
 
 #define PORT_SENSOR_LIGHT \
   { INTERNAL_ADI_PORT, 'D' }
@@ -304,9 +304,9 @@ static Btn_Digi btn_intake_toggle(pros::E_CONTROLLER_DIGITAL_L1, cntr_master);
 static Btn_Digi btn_intake_reverse(pros::E_CONTROLLER_DIGITAL_L2, cntr_master);
 
 // Custom Button for Launch
-static Btn_Digi btn_launch(pros::E_CONTROLLER_DIGITAL_R1, cntr_master);
+static Btn_Digi btn_launch(pros::E_CONTROLLER_DIGITAL_R2, cntr_master);
 
-static Btn_Digi btn_reverse_launch(pros::E_CONTROLLER_DIGITAL_R2, cntr_master);
+static Btn_Digi btn_reverse_launch(pros::E_CONTROLLER_DIGITAL_R1, cntr_master);
 
 // Custom Button for Flapjack Toggle
 static Btn_Digi btn_flap(pros::E_CONTROLLER_DIGITAL_B, cntr_master);

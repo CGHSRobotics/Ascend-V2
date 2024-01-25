@@ -62,6 +62,8 @@ void initialize() {
   ace::lvgl::start_preloader_anim();
 
   ace::update_cntr_haptic(".");
+
+  
 }
 
 /* -------------------------------- Disabled -------------------------------- */
