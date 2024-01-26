@@ -309,9 +309,9 @@ static Btn_Digi btn_launch(pros::E_CONTROLLER_DIGITAL_R2, cntr_master);
 static Btn_Digi btn_reverse_launch(pros::E_CONTROLLER_DIGITAL_R1, cntr_master);
 
 // Custom Button for Flapjack Toggle
-static Btn_Digi btn_flap(pros::E_CONTROLLER_DIGITAL_B, cntr_master);
+static Btn_Digi btn_flap(pros::E_CONTROLLER_DIGITAL_A, cntr_master);
 
-static Btn_Digi btn_lift(pros::E_CONTROLLER_DIGITAL_A, cntr_master);
+static Btn_Digi btn_lift(pros::E_CONTROLLER_DIGITAL_B, cntr_master);
 
 static Btn_Digi btn_auton(pros::E_CONTROLLER_DIGITAL_RIGHT, cntr_master);
 
