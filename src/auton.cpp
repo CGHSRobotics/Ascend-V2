@@ -152,13 +152,13 @@ void skills() {
 
   drive_chassis(6, ace::AUTON_DRIVE_SPEED, true);
   // 5
-  /*
-    launch_auton(ace::launch_speed);
-    pros::delay(34000);
-    ace::launcherMotor.move_voltage(LAUNCH_SPEED * 120);
-    ace::launcherMotor.set_brake_mode(MOTOR_BRAKE_HOLD);
-    ace::launcherMotor.brake();
-  */
+
+  launch_auton(ace::launch_speed);
+  pros::delay(34000);
+  ace::launcherMotor.move_voltage(LAUNCH_SPEED * 120);
+  ace::launcherMotor.set_brake_mode(MOTOR_BRAKE_HOLD);
+  ace::launcherMotor.brake();
+
   drive_chassis(-5, ace::AUTON_DRIVE_SPEED, true);
   // flag
   turn_chassis(-190, ace::AUTON_TURN_SPEED, true);
@@ -224,6 +224,8 @@ void skills() {
   turn_chassis(185, ace::AUTON_TURN_SPEED, true);
 
   drive_chassis(55, ace::AUTON_DRIVE_SPEED, true);
+
+  drive_chassis(-10, ace::AUTON_DRIVE_SPEED, true);
 }
 
 /* ========================================================================== */
