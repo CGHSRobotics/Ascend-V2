@@ -12,6 +12,34 @@ int auton_selection_index = 0;
 /*                               Score Auton                                   */
 /* ========================================================================== */
 void score() {
+  ace::intakeMotorLeft.spin_percent(-ace::INTAKE_SPEED);
+
+  drive_chassis(120, ace::AUTON_DRIVE_SPEED, true);
+
+  turn_chassis(130, ace::AUTON_TURN_SPEED, true);
+
+  ace::flapPneumatics.set_value(1);
+
+  drive_chassis(58, ace::AUTON_DRIVE_SPEED, true);
+
+  ace::intakeMotorLeft.spin_percent(ace::INTAKE_SPEED);
+
+  ace::flapPneumatics.set_value(0);
+
+  drive_chassis(-15, ace::AUTON_DRIVE_SPEED, true);
+
+  ace::intakeMotorLeft.spin_percent(-ace::INTAKE_SPEED);
+
+  turn_chassis(-80, ace::AUTON_TURN_SPEED, true);
+
+  drive_chassis(35, ace::AUTON_DRIVE_SPEED, true);
+
+  drive_chassis(-10, ace::AUTON_DRIVE_SPEED, true);
+
+  turn_chassis(120, ace::AUTON_TURN_SPEED, true);
+
+  /*
+
   drive_chassis(15, ace::AUTON_DRIVE_SPEED, true);
 
   ace::flapPneumatics.set_value(1);
@@ -33,9 +61,9 @@ void score() {
 
   drive_chassis(-35, ace::AUTON_DRIVE_SPEED, true);
 
-  /* turn_chassis(95, ace::AUTON_TURN_SPEED, true);
+  turn_chassis(95, ace::AUTON_TURN_SPEED, true);
 
-   drive_chassis(10, ace::AUTON_DRIVE_SPEED, true); */
+   drive_chassis(10, ace::AUTON_DRIVE_SPEED, true);
 
   turn_chassis(-65, ace::AUTON_TURN_SPEED, true);
   drive_chassis(6, ace::AUTON_DRIVE_SPEED, true);
@@ -47,6 +75,7 @@ void score() {
   // 200
 
   drive_chassis(80, ace::AUTON_DRIVE_SPEED, true);
+  */
 }
 
 void score_inv() {

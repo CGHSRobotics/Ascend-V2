@@ -92,10 +92,11 @@ namespace ace {
 /* ------------------------------- ADI Devices ------------------------------ */
 
 #define PORT_PNEU_ENDGAME \
-  { INTERNAL_ADI_PORT, 'F' }
+  { INTERNAL_ADI_PORT, 'E' }
 
 #define PORT_PNEU_INTAKE \
-  { INTERNAL_ADI_PORT, 'H' }
+  { INTERNAL_ADI_PORT, 'F' }
+// side hang
 
 #define PORT_PNEU_LIFT_1 \
   { INTERNAL_ADI_PORT, 'B' }
@@ -104,10 +105,10 @@ namespace ace {
   { INTERNAL_ADI_PORT, 'G' }
 
 #define PORT_PNEU_FLAP \
-  { INTERNAL_ADI_PORT, 'A' }
+  { INTERNAL_ADI_PORT, 'D' }
 
 #define PORT_SENSOR_LIGHT \
-  { INTERNAL_ADI_PORT, 'D' }
+  { INTERNAL_ADI_PORT, 'C' }
 
 #define PORT_LED \
   { INTERNAL_ADI_PORT, 'E' }
