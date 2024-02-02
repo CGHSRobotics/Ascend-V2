@@ -205,11 +205,11 @@ const float LAUNCHER_SPEED_CUTOFF = 5;
 
 // Chassis Speeds ( * 1.27 to fit in range of [-127, 127])
 const float DRIVE_SPEED = 87.0 * 1.27;         // 87
-const float AUTON_DRIVE_SPEED = -87.0 * 1.27;  // 87
+const float AUTON_DRIVE_SPEED = -92.0 * 1.27;  // 87
 const float DRIVE_SPEED_INTAKE = 25.0 * 1.27;
 // 20
-const float TURN_SPEED = 71.0 * 1.27;        // 71
-const float AUTON_TURN_SPEED = 71.0 * 1.27;  // 71
+const float TURN_SPEED = 87.0 * 1.27;        // 71
+const float AUTON_TURN_SPEED = 87.0 * 1.27;  // 71
 const float TURN_SPEED_SLOW = 45.0 * 1.27;
 extern bool curr_launching;
 
