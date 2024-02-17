@@ -72,22 +72,27 @@ namespace ace {
 /* --------------------------------- Chassis -------------------------------- */
 #define PORT_CHASSIS_L_F -14
 #define PORT_CHASSIS_L_C -15
+// dead
 #define PORT_CHASSIS_L_B -19
 
-#define PORT_CHASSIS_R_F 17
+#define PORT_CHASSIS_R_F 16
 #define PORT_CHASSIS_R_C 12
+// dead
 #define PORT_CHASSIS_R_B 13
 
 /* ------------------------- Other Motors / Devices ------------------------- */
 #define PORT_INTAKE_LEFT 5
 #define PORT_INTAKE_RIGHT 15
+// dead
 #define PORT_LAUNCHER 10
 #define PORT_ENDGAME_LEFT 11
 #define PORT_ENDGAME_RIGHT 18
-
+// dead
 #define PORT_VISION 20
-#define PORT_IMU 16
+// dead
+#define PORT_IMU 17
 #define PORT_ROTATION 1
+// dead
 
 /* ------------------------------- ADI Devices ------------------------------ */
 
@@ -103,18 +108,19 @@ namespace ace {
 
 #define PORT_PNEU_LIFT_2 \
   { INTERNAL_ADI_PORT, 'G' }
-
+// dead
 #define PORT_PNEU_FLAP \
   { INTERNAL_ADI_PORT, 'D' }
 
 #define PORT_SENSOR_LIGHT \
   { INTERNAL_ADI_PORT, 'C' }
-
+// dead
 #define PORT_LED \
   { INTERNAL_ADI_PORT, 'E' }
-
+// dead
 #define PORT_LIMIT \
   { INTERNAL_ADI_PORT, 'H' }
+// dead
 
 // f is endgame
 /* ========================================================================== */
@@ -204,11 +210,17 @@ const float LAUNCH_SPEED_STANDBY = LAUNCH_SPEED;
 const float LAUNCHER_SPEED_CUTOFF = 5;
 
 // Chassis Speeds ( * 1.27 to fit in range of [-127, 127])
-const float DRIVE_SPEED = 87.0 * 1.27;         // 87
-const float AUTON_DRIVE_SPEED = -92.0 * 1.27;  // 87
-const float DRIVE_SPEED_INTAKE = 25.0 * 1.27;
-// 20
-const float TURN_SPEED = 87.0 * 1.27;        // 71
+const float DRIVE_SPEED = 95.0 * 1.27;  // 87
+// blowed up???
+const float AUTON_DRIVE_SPEED = -87.0 * 1.27;  // 87
+
+const float AUTON_DRIVE_SPEED_FAST = -95.0 * 1.27;  // 87
+
+const float AUTON_DRIVE_SPEED_SLOW = 60.0 * 1.27;
+// 25
+//  20
+const float TURN_SPEED = 95.0 * 1.27;  // 71
+// 87
 const float AUTON_TURN_SPEED = 87.0 * 1.27;  // 71
 const float TURN_SPEED_SLOW = 45.0 * 1.27;
 extern bool curr_launching;
@@ -292,13 +304,13 @@ extern pros::ADILed led;
 /* --------------------------------- Master --------------------------------- */
 
 static Btn_Digi btn_launch_speed_toggle(pros::E_CONTROLLER_DIGITAL_DOWN, cntr_partner);
-
+// dead
 static Btn_Digi btn_long_launch(pros::E_CONTROLLER_DIGITAL_DOWN, cntr_master);
-
-static Btn_Digi btn_intake_pneu(pros::E_CONTROLLER_DIGITAL_Y, cntr_master);
+// dead
+static Btn_Digi btn_intake_pneu(pros::E_CONTROLLER_DIGITAL_B, cntr_master);
 
 static Btn_Digi btn_endgame(pros::E_CONTROLLER_DIGITAL_UP, cntr_master);
-// Custom Button for Intake Toggle
+
 static Btn_Digi btn_intake_toggle(pros::E_CONTROLLER_DIGITAL_L1, cntr_master);
 
 // Custom Button for Intake Reverse
@@ -312,10 +324,10 @@ static Btn_Digi btn_reverse_launch(pros::E_CONTROLLER_DIGITAL_R1, cntr_master);
 // Custom Button for Flapjack Toggle
 static Btn_Digi btn_flap(pros::E_CONTROLLER_DIGITAL_A, cntr_master);
 
-static Btn_Digi btn_lift(pros::E_CONTROLLER_DIGITAL_B, cntr_master);
+static Btn_Digi btn_lift(pros::E_CONTROLLER_DIGITAL_Y, cntr_master);
 
 static Btn_Digi btn_auton(pros::E_CONTROLLER_DIGITAL_RIGHT, cntr_master);
-
+// dead
 /* ---------------------------------- Both ---------------------------------- */
 
 // Custom Button for Standby
@@ -522,9 +534,9 @@ extern int auton_selection_index;
 
 extern void three_side();
 extern void two_side();
-extern void skills();
+extern void cool_skills();
 extern void score();
-extern void score_inv();
+
 extern void contact();
 
 /**

@@ -86,8 +86,9 @@ void autonomous() {
   ace::reset_launcher(ace::LAUNCH_SPEED);
   ace::reset_motors();
   ace::intake_toggle(ace::intake_enabled);
+  // ace::auton::contact();
+  //  ace::auton::score();
   ace::auton::score();
-  // ace::auton::skills();
   ace::intake_pneu_toggle(ace::intake_pneu_enabled);
   /*
   if (curr_auton == "score") {
