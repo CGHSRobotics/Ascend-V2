@@ -70,27 +70,27 @@ namespace ace {
 /* ========================================================================== */
 
 /* --------------------------------- Chassis -------------------------------- */
-#define PORT_CHASSIS_L_F -14
-#define PORT_CHASSIS_L_C -15
+#define PORT_CHASSIS_L_F -15
+#define PORT_CHASSIS_L_C -14
 // dead
-#define PORT_CHASSIS_L_B -19
+#define PORT_CHASSIS_L_B -9
 
 #define PORT_CHASSIS_R_F 16
-#define PORT_CHASSIS_R_C 12
+#define PORT_CHASSIS_R_C 13
 // dead
-#define PORT_CHASSIS_R_B 13
+#define PORT_CHASSIS_R_B 12
 
 /* ------------------------- Other Motors / Devices ------------------------- */
 #define PORT_INTAKE_LEFT 5
 #define PORT_INTAKE_RIGHT 15
 // dead
-#define PORT_LAUNCHER 10
+#define PORT_LAUNCHER 21
 #define PORT_ENDGAME_LEFT 11
 #define PORT_ENDGAME_RIGHT 18
 // dead
 #define PORT_VISION 20
 // dead
-#define PORT_IMU 17
+#define PORT_IMU 4
 #define PORT_ROTATION 1
 // dead
 
@@ -203,16 +203,16 @@ const float AUTON_INTAKE_SPEED = 50.0;
 
 // Launcher Speeds
 const float ENDGAME_SPEED = 50.0;
-const float LAUNCH_SPEED = 100.0;
+const float LAUNCH_SPEED = 150.0;
 const float LAUNCH_SPEED_LONG = 80;
 
 const float LAUNCH_SPEED_STANDBY = LAUNCH_SPEED;
 const float LAUNCHER_SPEED_CUTOFF = 5;
 
 // Chassis Speeds ( * 1.27 to fit in range of [-127, 127])
-const float DRIVE_SPEED = 95.0 * 1.27;  // 87
+const float DRIVE_SPEED = 87.0 * 1.27;  // 87
 // blowed up???
-const float AUTON_DRIVE_SPEED = -87.0 * 1.27;  // 87
+const float AUTON_DRIVE_SPEED = -91.0 * 1.27;  // 87
 
 const float AUTON_DRIVE_SPEED_FAST = -95.0 * 1.27;  // 87
 

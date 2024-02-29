@@ -15,7 +15,7 @@ Drive chassis(
 
     // Wheel Diameter (Remember, 4" wheels are actually 4.125!)
     ,
-    2.75
+    3.25
 
     // Cartridge RPM
     ,
