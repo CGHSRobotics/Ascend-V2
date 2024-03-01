@@ -70,7 +70,7 @@ namespace ace {
 /* ========================================================================== */
 
 /* --------------------------------- Chassis -------------------------------- */
-#define PORT_CHASSIS_L_F -15
+#define PORT_CHASSIS_L_F -17
 #define PORT_CHASSIS_L_C -14
 // dead
 #define PORT_CHASSIS_L_B -9
@@ -100,7 +100,7 @@ namespace ace {
   { INTERNAL_ADI_PORT, 'E' }
 
 #define PORT_PNEU_INTAKE \
-  { INTERNAL_ADI_PORT, 'F' }
+  { INTERNAL_ADI_PORT, 'D' }
 // side hang
 
 #define PORT_PNEU_LIFT_1 \
@@ -110,7 +110,7 @@ namespace ace {
   { INTERNAL_ADI_PORT, 'G' }
 // dead
 #define PORT_PNEU_FLAP \
-  { INTERNAL_ADI_PORT, 'D' }
+  { INTERNAL_ADI_PORT, 'F' }
 
 #define PORT_SENSOR_LIGHT \
   { INTERNAL_ADI_PORT, 'C' }
@@ -221,7 +221,7 @@ const float AUTON_DRIVE_SPEED_SLOW = 60.0 * 1.27;
 //  20
 const float TURN_SPEED = 95.0 * 1.27;  // 71
 // 87
-const float AUTON_TURN_SPEED = 87.0 * 1.27;  // 71
+const float AUTON_TURN_SPEED = 85.0 * 1.27;  // 87
 const float TURN_SPEED_SLOW = 45.0 * 1.27;
 extern bool curr_launching;
 
@@ -534,10 +534,12 @@ extern int auton_selection_index;
 
 extern void three_side();
 extern void two_side();
-extern void cool_skills();
+extern void bar();
+extern void skills();
 extern void score();
-
+extern void score_match();
 extern void contact();
+extern void contact_match();
 
 /**
  * @brief 	pages up auton control int by one
