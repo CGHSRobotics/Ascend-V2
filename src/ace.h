@@ -540,6 +540,7 @@ extern void score();
 extern void score_match();
 extern void contact();
 extern void contact_match();
+extern void cool_skills();
 
 /**
  * @brief 	pages up auton control int by one

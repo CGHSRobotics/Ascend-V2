@@ -88,7 +88,7 @@ void autonomous() {
   ace::intake_toggle(ace::intake_enabled);
   // ace::auton::contact();
   //  ace::auton::score();
-  ace::auton::contact();
+  ace::auton::skills();
   ace::intake_pneu_toggle(ace::intake_pneu_enabled);
   /*
   if (curr_auton == "score") {
