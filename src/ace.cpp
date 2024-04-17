@@ -265,7 +265,7 @@ void launch_standby(bool enabled, float speed) {
 void reset_motors() {
   launcherMotor.move_voltage(0);
   intakeMotorLeft.move_voltage(0);
-  // intakeMotorRight.move_voltage(0);
+  intakeMotorRight.move_voltage(0);
 
   launcher_standby_enabled = false;
 
@@ -329,20 +329,20 @@ void intake_toggle(bool enabled) {
   // intake enabled
   if (enabled) {
     intakeMotorLeft.spin_percent(-INTAKE_SPEED);
-    // intakeMotorRight.spin_percent(-INTAKE_SPEED);
+    intakeMotorRight.spin_percent(-INTAKE_SPEED);
   }
 
   // Not enabled
   else {
     intake_timer.reset();
     intakeMotorLeft.spin_percent(0);
-    // intakeMotorRight.spin_percent(0);
+    intakeMotorRight.spin_percent(0);
   }
 }
 
 void intake_reverse() {
   intakeMotorLeft.spin_percent(INTAKE_SPEED);
-  // intakeMotorRight.spin_percent(INTAKE_SPEED);
+  intakeMotorRight.spin_percent(INTAKE_SPEED);
 }
 
 /* ------------------------------ Vision Sensor ----------------------------- */

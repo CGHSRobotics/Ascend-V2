@@ -81,8 +81,8 @@ namespace ace {
 #define PORT_CHASSIS_R_B 12
 
 /* ------------------------- Other Motors / Devices ------------------------- */
-#define PORT_INTAKE_LEFT 5
-#define PORT_INTAKE_RIGHT 15
+#define PORT_INTAKE_LEFT 3
+#define PORT_INTAKE_RIGHT 8
 // dead
 #define PORT_LAUNCHER 21
 #define PORT_ENDGAME_LEFT 11
@@ -98,28 +98,28 @@ namespace ace {
 
 #define PORT_PNEU_ENDGAME \
   { INTERNAL_ADI_PORT, 'E' }
-
+// edngame
 #define PORT_PNEU_INTAKE \
-  { INTERNAL_ADI_PORT, 'D' }
-// side hang
+  { INTERNAL_ADI_PORT, 'H' }
+// back flaps
 
 #define PORT_PNEU_LIFT_1 \
-  { INTERNAL_ADI_PORT, 'B' }
-
+  { INTERNAL_ADI_PORT, 'F' }
+// pto
 #define PORT_PNEU_LIFT_2 \
-  { INTERNAL_ADI_PORT, 'G' }
+  { INTERNAL_ADI_PORT, 'D' }
 // dead
 #define PORT_PNEU_FLAP \
-  { INTERNAL_ADI_PORT, 'F' }
-
+  { INTERNAL_ADI_PORT, 'G' }
+// front flaps
 #define PORT_SENSOR_LIGHT \
-  { INTERNAL_ADI_PORT, 'C' }
+  { INTERNAL_ADI_PORT, 'A' }
 // dead
 #define PORT_LED \
-  { INTERNAL_ADI_PORT, 'E' }
+  { INTERNAL_ADI_PORT, 'B' }
 // dead
 #define PORT_LIMIT \
-  { INTERNAL_ADI_PORT, 'H' }
+  { INTERNAL_ADI_PORT, 'C' }
 // dead
 
 // f is endgame
@@ -161,6 +161,7 @@ extern int ambient_light;
 
 // enum of possible states
 enum led_state_t {
+
   led_idle = 1,
   led_intake = 2,
   led_launch = 3
@@ -324,7 +325,7 @@ static Btn_Digi btn_reverse_launch(pros::E_CONTROLLER_DIGITAL_R1, cntr_master);
 // Custom Button for Flapjack Toggle
 static Btn_Digi btn_flap(pros::E_CONTROLLER_DIGITAL_A, cntr_master);
 
-static Btn_Digi btn_lift(pros::E_CONTROLLER_DIGITAL_Y, cntr_master);
+static Btn_Digi btn_lift(pros::E_CONTROLLER_DIGITAL_DOWN, cntr_master);
 
 static Btn_Digi btn_auton(pros::E_CONTROLLER_DIGITAL_RIGHT, cntr_master);
 // dead

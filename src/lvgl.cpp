@@ -63,8 +63,8 @@ static lv_obj_t* main_screen;
 static lv_obj_t* main_cont;
 static lv_obj_t* main_img;
 
-static lv_obj_t* main_bar;
-static lv_obj_t* main_bar_label;
+// static lv_obj_t* main_bar;
+// static lv_obj_t* main_bar_label;
 
 static lv_obj_t* main_btn;
 static lv_obj_t* main_btn_label;
@@ -170,9 +170,9 @@ static void brain_screen_update() {
     if (has_init) {
       // Launcher Slider
       int launch_rpm = ace::launcherMotor.get_actual_velocity() * 6;
-      lv_bar_set_value(main_bar, launch_rpm);
-      lv_label_set_text(main_bar_label, std::to_string(launch_rpm).c_str());
-      lv_obj_align(main_bar_label, NULL, LV_ALIGN_IN_TOP_LEFT, 50, (1 - ((float)lv_bar_get_value(main_bar) / 3600.0)) * 220 + 5);
+      // lv_bar_set_value(main_bar, launch_rpm);
+      // lv_label_set_text(main_bar_label, std::to_string(launch_rpm).c_str());
+      // lv_obj_align(main_bar_label, NULL, LV_ALIGN_IN_TOP_LEFT, 50, (1 - ((float)lv_bar_get_value(main_bar) / 3600.0)) * 220 + 5);
 
       // Main Screen Text
       lv_label_set_text(menu_tab1_cont1_battery_label,
@@ -275,8 +275,8 @@ static void init_styles() {
 
   // Style for Screen
   lv_style_copy(&style_screen, &lv_style_plain);
-  style_screen.body.main_color = LV_COLOR_GRAY;
-  style_screen.body.grad_color = LV_COLOR_GRAY;
+  style_screen.body.main_color = LV_COLOR_BLACK;
+  style_screen.body.grad_color = LV_COLOR_BLACK;
 
   // Style for text
   lv_style_copy(&style_text, &lv_style_pretty);
@@ -294,7 +294,7 @@ static void init_styles() {
 
   // Style for Empty Container
   lv_style_copy(&style_container_empty, &lv_style_plain);
-  style_container_empty.body.grad_color = LV_COLOR_BLACK;
+  style_container_empty.body.grad_color = LV_COLOR_WHITE;
   style_container_empty.body.main_color = LV_COLOR_BLACK;
   style_container_empty.body.border.color = LV_COLOR_BLACK;
   style_container_empty.body.border.width = 0;
@@ -539,28 +539,32 @@ static void init_main_screen() {
   main_cont = lv_cont_create(main_screen, NULL);
   lv_obj_set_size(main_cont, 480, 240);
   lv_cont_set_fit(main_cont, false, false);
-  lv_obj_align(main_cont, NULL, LV_ALIGN_IN_TOP_LEFT, 0, 0);
+  lv_obj_align(main_cont, NULL, LV_ALIGN_CENTER, 0, 0);
   lv_preload_set_style(main_cont, LV_PRELOAD_STYLE_MAIN, &style_preload);
 
   /* ------------------------------- Main Image ------------------------------- */
   main_img = lv_img_create(main_cont, NULL);
   lv_obj_align(main_img, NULL, LV_ALIGN_IN_TOP_LEFT, 0, 0);
+  // LV_TOP_LEFT
   lv_img_set_src(main_img, "S:/usd/ace.bin");
+  // ace.bin
 
   /* ----------------------------- Launcher Speed ----------------------------- */
-  main_bar = lv_bar_create(main_cont, NULL);
-  lv_obj_set_size(main_bar, 30, 220);
-  lv_bar_set_range(main_bar, 0, 3600);
-  lv_bar_set_value(main_bar, 0.70 * 3600);
-  lv_bar_set_style(main_bar, LV_BAR_STYLE_BG, &style_bar);
-  lv_bar_set_style(main_bar, LV_BAR_STYLE_INDIC, &style_bar_indic);
-  lv_obj_align(main_bar, NULL, LV_ALIGN_IN_TOP_LEFT, 10, 10);
 
-  main_bar_label = lv_label_create(main_cont, NULL);
-  lv_obj_align(main_bar_label, NULL, LV_ALIGN_IN_TOP_LEFT, 50, (1 - ((float)lv_bar_get_value(main_bar) / 3600.0)) * 220 + 5);
-  lv_label_set_text(main_bar_label, std::to_string(lv_bar_get_value(main_bar)).c_str());
-  lv_label_set_style(main_bar_label, &style_text);
+  /*
+    main_bar = lv_bar_create(main_cont, NULL);
+    lv_obj_set_size(main_bar, 30, 220);
+    lv_bar_set_range(main_bar, 0, 3600);
+    lv_bar_set_value(main_bar, 0.70 * 3600);
+    lv_bar_set_style(main_bar, LV_BAR_STYLE_BG, &style_bar);
+    lv_bar_set_style(main_bar, LV_BAR_STYLE_INDIC, &style_bar_indic);
+    lv_obj_align(main_bar, NULL, LV_ALIGN_IN_TOP_LEFT, 10, 10);
 
+    main_bar_label = lv_label_create(main_cont, NULL);
+    lv_obj_align(main_bar_label, NULL, LV_ALIGN_IN_TOP_LEFT, 50, (1 - ((float)lv_bar_get_value(main_bar) / 3600.0)) * 220 + 5);
+    lv_label_set_text(main_bar_label, std::to_string(lv_bar_get_value(main_bar)).c_str());
+    lv_label_set_style(main_bar_label, &style_text);
+  */
   /* ------------------------------- Menu Button ------------------------------ */
   main_btn = lv_btn_create(main_cont, NULL);
   lv_btn_set_fit(main_btn, false, false);
