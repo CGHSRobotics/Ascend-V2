@@ -100,7 +100,7 @@ namespace ace {
   { INTERNAL_ADI_PORT, 'E' }
 // edngame
 #define PORT_PNEU_INTAKE \
-  { INTERNAL_ADI_PORT, 'H' }
+  { INTERNAL_ADI_PORT, 'G' }
 // back flaps
 
 #define PORT_PNEU_LIFT_1 \
@@ -110,7 +110,7 @@ namespace ace {
   { INTERNAL_ADI_PORT, 'D' }
 // dead
 #define PORT_PNEU_FLAP \
-  { INTERNAL_ADI_PORT, 'G' }
+  { INTERNAL_ADI_PORT, 'H' }
 // front flaps
 #define PORT_SENSOR_LIGHT \
   { INTERNAL_ADI_PORT, 'A' }
@@ -308,7 +308,7 @@ static Btn_Digi btn_launch_speed_toggle(pros::E_CONTROLLER_DIGITAL_DOWN, cntr_pa
 // dead
 static Btn_Digi btn_long_launch(pros::E_CONTROLLER_DIGITAL_DOWN, cntr_master);
 // dead
-static Btn_Digi btn_intake_pneu(pros::E_CONTROLLER_DIGITAL_B, cntr_master);
+static Btn_Digi btn_intake_pneu(pros::E_CONTROLLER_DIGITAL_A, cntr_master);
 
 static Btn_Digi btn_endgame(pros::E_CONTROLLER_DIGITAL_UP, cntr_master);
 
@@ -323,7 +323,7 @@ static Btn_Digi btn_launch(pros::E_CONTROLLER_DIGITAL_R2, cntr_master);
 static Btn_Digi btn_reverse_launch(pros::E_CONTROLLER_DIGITAL_R1, cntr_master);
 
 // Custom Button for Flapjack Toggle
-static Btn_Digi btn_flap(pros::E_CONTROLLER_DIGITAL_A, cntr_master);
+static Btn_Digi btn_flap(pros::E_CONTROLLER_DIGITAL_B, cntr_master);
 
 static Btn_Digi btn_lift(pros::E_CONTROLLER_DIGITAL_DOWN, cntr_master);
 
@@ -542,6 +542,7 @@ extern void score_match();
 extern void contact();
 extern void contact_match();
 extern void cool_skills();
+extern void kamikaze();
 
 /**
  * @brief 	pages up auton control int by one

@@ -274,7 +274,7 @@ void reset_motors() {
 
 // toggles flapjack
 
-void flap_toggle(bool enabled) {
+void flap_toggle(bool enabled) { 
   if (enabled) {
     flapPneumatics.set_value(1);
     return;
