@@ -70,25 +70,27 @@ namespace ace {
 /* ========================================================================== */
 
 /* --------------------------------- Chassis -------------------------------- */
-#define PORT_CHASSIS_L_F -17
-#define PORT_CHASSIS_L_C -14
+#define PORT_CHASSIS_L_F -10
+#define PORT_CHASSIS_L_C -8
 // dead
-#define PORT_CHASSIS_L_B -9
+#define PORT_CHASSIS_L_B 9
 
-#define PORT_CHASSIS_R_F 16
-#define PORT_CHASSIS_R_C 13
+#define PORT_CHASSIS_R_F 19
+#define PORT_CHASSIS_R_C 20
 // dead
-#define PORT_CHASSIS_R_B 12
+#define PORT_CHASSIS_R_B -18
 
 /* ------------------------- Other Motors / Devices ------------------------- */
-#define PORT_INTAKE_LEFT 3
-#define PORT_INTAKE_RIGHT 8
+#define PORT_INTAKE_LEFT -17
+#define PORT_INTAKE_RIGHT -6
+
+#define PORT_CHAIN -7
 // dead
 #define PORT_LAUNCHER 21
 #define PORT_ENDGAME_LEFT 11
-#define PORT_ENDGAME_RIGHT 18
+#define PORT_ENDGAME_RIGHT 3
 // dead
-#define PORT_VISION 20
+#define PORT_VISION 2
 // dead
 #define PORT_IMU 4
 #define PORT_ROTATION 1
@@ -97,29 +99,29 @@ namespace ace {
 /* ------------------------------- ADI Devices ------------------------------ */
 
 #define PORT_PNEU_ENDGAME \
-  { INTERNAL_ADI_PORT, 'E' }
+  {INTERNAL_ADI_PORT, 'E'}
 // edngame
 #define PORT_PNEU_INTAKE \
-  { INTERNAL_ADI_PORT, 'G' }
+  {INTERNAL_ADI_PORT, 'G'}
 // back flaps
 
 #define PORT_PNEU_LIFT_1 \
-  { INTERNAL_ADI_PORT, 'F' }
+  {INTERNAL_ADI_PORT, 'F'}
 // pto
 #define PORT_PNEU_LIFT_2 \
-  { INTERNAL_ADI_PORT, 'D' }
+  {INTERNAL_ADI_PORT, 'D'}
 // dead
 #define PORT_PNEU_FLAP \
-  { INTERNAL_ADI_PORT, 'H' }
+  {INTERNAL_ADI_PORT, 'H'}
 // front flaps
 #define PORT_SENSOR_LIGHT \
-  { INTERNAL_ADI_PORT, 'A' }
+  {INTERNAL_ADI_PORT, 'A'}
 // dead
 #define PORT_LED \
-  { INTERNAL_ADI_PORT, 'B' }
+  {INTERNAL_ADI_PORT, 'B'}
 // dead
 #define PORT_LIMIT \
-  { INTERNAL_ADI_PORT, 'C' }
+  {INTERNAL_ADI_PORT, 'C'}
 // dead
 
 // f is endgame
@@ -180,6 +182,7 @@ const int led_color_blue_bright = 0x0000ff;
 /* ----------------------- User Control Enabled Bools ----------------------- */
 static bool launcher_standby_enabled = false;
 static bool intake_enabled = false;
+static bool chain_enabled = false;
 static bool intake_reverse_enabled = false;
 // static bool launch_short_enabled = false;
 // static bool launch_long_enabled = false;
@@ -200,6 +203,7 @@ static bool launch_speed_toggle_enabled = false;
 // Misc Speeds
 const float ROLLER_SPEED = 100.0;
 const float INTAKE_SPEED = 100.0;
+const float CHAIN_SPEED = 80.0;
 const float AUTON_INTAKE_SPEED = 50.0;
 
 // Launcher Speeds
@@ -264,6 +268,8 @@ static pros::Rotation rotate(PORT_ROTATION);
 // Launcher motor
 extern A_Motor launcherMotor;
 
+extern A_Motor chainMotor;
+
 // Motor for intake left
 extern A_Motor intakeMotorLeft;
 
@@ -318,9 +324,9 @@ static Btn_Digi btn_intake_toggle(pros::E_CONTROLLER_DIGITAL_L1, cntr_master);
 static Btn_Digi btn_intake_reverse(pros::E_CONTROLLER_DIGITAL_L2, cntr_master);
 
 // Custom Button for Launch
-static Btn_Digi btn_launch(pros::E_CONTROLLER_DIGITAL_R2, cntr_master);
-
-static Btn_Digi btn_reverse_launch(pros::E_CONTROLLER_DIGITAL_R1, cntr_master);
+static Btn_Digi btn_launch(pros::E_CONTROLLER_DIGITAL_X, cntr_master);
+// used to be r2
+static Btn_Digi btn_reverse_launch(pros::E_CONTROLLER_DIGITAL_R2, cntr_master);
 
 // Custom Button for Flapjack Toggle
 static Btn_Digi btn_flap(pros::E_CONTROLLER_DIGITAL_B, cntr_master);
@@ -328,6 +334,8 @@ static Btn_Digi btn_flap(pros::E_CONTROLLER_DIGITAL_B, cntr_master);
 static Btn_Digi btn_lift(pros::E_CONTROLLER_DIGITAL_DOWN, cntr_master);
 
 static Btn_Digi btn_auton(pros::E_CONTROLLER_DIGITAL_RIGHT, cntr_master);
+
+static Btn_Digi btn_chain_toggle(pros::E_CONTROLLER_DIGITAL_R1, cntr_master);
 // dead
 /* ---------------------------------- Both ---------------------------------- */
 
@@ -367,6 +375,8 @@ static Btn_Digi btn_launch_speed_decrease(pros::E_CONTROLLER_DIGITAL_R2, cntr_pa
 /* ========================================================================== */
 
 /* --------------------------------- Standby -------------------------------- */
+
+extern void chain_toggle(bool enabled);
 
 extern void intake_pneu_auton();
 

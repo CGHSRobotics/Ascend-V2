@@ -81,14 +81,15 @@ void autonomous() {
 
   // std::string curr_auton = ace::auton::auton_selection[ace::auton::auton_selection_index];
 
-  // ace::launcher_timer.reset();
+  // ace::launcher_timer.reset()  ;
   ace::rotate.reset_position();
   ace::reset_launcher(ace::LAUNCH_SPEED);
   ace::reset_motors();
   ace::intake_toggle(ace::intake_enabled);
+  ace::chain_toggle(ace::chain_enabled);
   // ace::auton::contact();
   //  ace::auton::score();
-  ace::auton::kamikaze();
+  ace::auton::contact_match();
   ace::intake_pneu_toggle(ace::intake_pneu_enabled);
   /*
   if (curr_auton == "score") {
@@ -115,6 +116,13 @@ void opcontrol() {
 
     /* -------------------------------- Get Input ------------------------------- */
 
+    // chain toggle
+
+    if (ace::btn_chain_toggle.get_press()) {
+      ace::chain_enabled = true;
+    } else {
+      ace::chain_enabled = false;
+    }
     // Intake Toggle
     if (ace::btn_intake_toggle.get_press()) {
       ace::intake_enabled = true;
@@ -288,6 +296,14 @@ void opcontrol() {
       } else {
         ace::intakeMotorRight.spin_percent(0);
         ace::intakeMotorLeft.spin_percent(0);
+      }
+
+      if (ace::chain_enabled) {
+        ace::chain_toggle(true);
+        break;
+
+      } else {
+        ace::chainMotor.spin_percent(0);
       }
 
       if (ace::launch_speed_toggle_enabled) {

@@ -15,7 +15,7 @@ Drive chassis(
 
     // Wheel Diameter (Remember, 4" wheels are actually 4.125!)
     ,
-    3.25
+    2.75
 
     // Cartridge RPM
     ,
@@ -48,13 +48,15 @@ util::timer launcher_timer(50);
 
 A_Motor launcherMotor(PORT_LAUNCHER, MOTOR_GEARSET_36, true);
 
-A_Motor intakeMotorLeft(PORT_INTAKE_LEFT, MOTOR_GEARSET_36, false);
+A_Motor intakeMotorLeft(PORT_INTAKE_LEFT, MOTOR_GEARSET_18, false);
 
-A_Motor intakeMotorRight(PORT_INTAKE_RIGHT, MOTOR_GEARSET_36, true);
+A_Motor intakeMotorRight(PORT_INTAKE_RIGHT, MOTOR_GEARSET_18, true);
 
 A_Motor endgameMotorLeft(PORT_ENDGAME_LEFT, MOTOR_GEARSET_36, false);
 
 A_Motor endgameMotorRight(PORT_ENDGAME_RIGHT, MOTOR_GEARSET_36, true);
+
+A_Motor chainMotor(PORT_CHAIN, MOTOR_GEARSET_36, true);
 
 /* ========================================================================= */
 /*                              Class Definitions                             */
@@ -274,7 +276,7 @@ void reset_motors() {
 
 // toggles flapjack
 
-void flap_toggle(bool enabled) { 
+void flap_toggle(bool enabled) {
   if (enabled) {
     flapPneumatics.set_value(1);
     return;
@@ -337,6 +339,19 @@ void intake_toggle(bool enabled) {
     intake_timer.reset();
     intakeMotorLeft.spin_percent(0);
     intakeMotorRight.spin_percent(0);
+  }
+}
+
+void chain_toggle(bool enabled) {
+  // intake enabled
+  if (enabled) {
+    chainMotor.spin_percent(-CHAIN_SPEED);
+
+  }
+
+  // Not enabled
+  else {
+    chainMotor.spin_percent(0);
   }
 }
 

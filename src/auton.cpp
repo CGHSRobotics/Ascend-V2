@@ -15,11 +15,15 @@ int auton_selection_index = 0;
 void score() {
   ace::intakeMotorLeft.spin_percent(-ace::INTAKE_SPEED);
 
+  ace::intakeMotorRight.spin_percent(-ace::INTAKE_SPEED);
+
   drive_chassis(118, ace::AUTON_DRIVE_SPEED, true);
   // 120
   turn_chassis(130, ace::AUTON_TURN_SPEED, true);
 
   ace::intakeMotorLeft.spin_percent(ace::INTAKE_SPEED);
+
+  ace::intakeMotorRight.spin_percent(ace::INTAKE_SPEED);
 
   ace::intakePneumatics.set_value(1);
 
@@ -31,7 +35,11 @@ void score() {
 
   ace::intakeMotorLeft.spin_percent(0);
 
+  ace::intakeMotorRight.spin_percent(0);
+
   ace::intakeMotorLeft.spin_percent(-ace::INTAKE_SPEED);
+
+  ace::intakeMotorRight.spin_percent(-ace::INTAKE_SPEED);
 
   turn_chassis(-90, ace::AUTON_TURN_SPEED, true);
   //-90
@@ -41,11 +49,15 @@ void score() {
   turn_chassis(100, ace::AUTON_TURN_SPEED, true);
 
   ace::intakeMotorLeft.spin_percent(ace::INTAKE_SPEED);
+
+  ace::intakeMotorRight.spin_percent(ace::INTAKE_SPEED);
   // temp
   drive_chassis(67, ace::AUTON_DRIVE_SPEED, true);
   // 70
   // 60
   ace::intakeMotorLeft.spin_percent(0);
+
+  ace::intakeMotorRight.spin_percent(0);
   // temp
 
   drive_chassis(-20, ace::AUTON_DRIVE_SPEED, true);
@@ -83,11 +95,15 @@ void bar() {
   // 1
   ace::intakeMotorLeft.spin_percent(-ace::INTAKE_SPEED);
 
+  ace::intakeMotorRight.spin_percent(-ace::INTAKE_SPEED);
+
   drive_chassis(-30, ace::AUTON_DRIVE_SPEED, true);
   //-20
   turn_chassis(-40, ace::AUTON_TURN_SPEED, true);
 
   ace::intakeMotorLeft.spin_percent(0);
+
+  ace::intakeMotorRight.spin_percent(0);
 
   drive_chassis(-35, ace::AUTON_DRIVE_SPEED, true);
 
@@ -95,7 +111,7 @@ void bar() {
 
   turn_chassis(30, ace::AUTON_TURN_SPEED, true);
 
-  drive_chassis(81, ace::AUTON_DRIVE_SPEED, true);
+  // drive_chassis(81, ace::AUTON_DRIVE_SPEED, true);
 
   // 40
 
@@ -182,49 +198,82 @@ void match() {
 }
 // scores and touches bar close side
 void contact_match() {
-  ace::intakeMotorLeft.spin_percent(-ace::INTAKE_SPEED);
+  ace::intakeMotorLeft.spin_percent(-100);
 
-  pros::delay(500);
+  ace::intakeMotorRight.spin_percent(-100);
 
-  ace::intakeMotorLeft.spin_percent(ace::INTAKE_SPEED);
-
-  drive_chassis(30, ace::AUTON_DRIVE_SPEED, true);
-
-  turn_chassis(40, ace::AUTON_TURN_SPEED, true);
-
-  // ace::intakeMotorLeft.spin_percent(ace::launch_speed);
-
-  drive_chassis(35, ace::AUTON_DRIVE_SPEED, true);
-
-  // ace::intakeMotorLeft.spin_percent(0);
-
-  drive_chassis(-37, ace::AUTON_DRIVE_SPEED, true);
-  //-35
+  pros::delay(4000);
 
   ace::intakeMotorLeft.spin_percent(0);
 
+  ace::intakeMotorRight.spin_percent(0);
+
+  drive_chassis(30, ace::AUTON_DRIVE_SPEED, true);
+
   ace::flapPneumatics.set_value(1);
 
-  turn_chassis(-5, ace::AUTON_TURN_SPEED, true);
-
-  drive_chassis(-40, ace::AUTON_DRIVE_SPEED, true);
-
-  ace::flapPneumatics.set_value(0);
+  drive_chassis(-30, ace::AUTON_DRIVE_SPEED, true);
 
   turn_chassis(-210, ace::AUTON_TURN_SPEED, true);
 
-  ace::intakeMotorLeft.spin_percent(ace::launch_speed);
+  ace::flapPneumatics.set_value(0);
 
-  drive_chassis(55, ace::AUTON_DRIVE_SPEED, true);
+  drive_chassis(77, ace::AUTON_DRIVE_SPEED, true);
+
+  ace::intakeMotorLeft.spin_percent(ace::INTAKE_SPEED);
+
+  ace::intakeMotorRight.spin_percent(ace::INTAKE_SPEED);
+  /*
+  ace::intakeMotorLeft.spin_percent(-ace::INTAKE_SPEED);
+
+  pros::delay(500);
+
+  ace::intakeMotorLeft.spin_percent(ace::INTAKE_SPEED);
+
+  drive_chassis(-30, ace::AUTON_DRIVE_SPEED, true);
+
+  turn_chassis(40, ace::AUTON_TURN_SPEED, true);
+*/
+  // ace::intakeMotorLeft.spin_percent(ace::launch_speed);
+
+  // drive_chassis(-30, ace::AUTON_DRIVE_SPEED, true);
+  // 30
+  //  ace::intakeMotorLeft.spin_percent(0);
+
+  // drive_chassis(37, ace::AUTON_DRIVE_SPEED, true);
+  //-35
+
+  /*
+    ace::intakeMotorLeft.spin_percent(0);
+
+    ace::flapPneumatics.set_value(1);
+
+    turn_chassis(5, ace::AUTON_TURN_SPEED, true);
+
+    drive_chassis(40, ace::AUTON_DRIVE_SPEED, true);
+
+    ace::flapPneumatics.set_value(0);
+
+    turn_chassis(-210, ace::AUTON_TURN_SPEED, true);
+
+    ace::intakeMotorLeft.spin_percent(ace::launch_speed);
+
+    drive_chassis(55, ace::AUTON_DRIVE_SPEED, true);
+    */
   // 58
 }
 // go touch bar on CLOSE SIDE, distance at end little whack
+// RISKY DRIVES OUT INTO CENTER 110
 void contact() {
   ace::intakeMotorLeft.spin_percent(ace::INTAKE_SPEED);
+
+  ace::intakeMotorRight.spin_percent(ace::INTAKE_SPEED);
 
   pros::delay(500);
 
   ace::intakeMotorLeft.spin_percent(-ace::INTAKE_SPEED);
+
+  ace::intakeMotorRight.spin_percent(-ace::INTAKE_SPEED);
 
   drive_chassis(110, ace::AUTON_DRIVE_SPEED_SLOW, true);
 
@@ -248,6 +297,8 @@ void contact() {
 
   ace::intakeMotorLeft.spin_percent(ace::launch_speed);
 
+  ace::intakeMotorRight.spin_percent(ace::launch_speed);
+
   drive_chassis(61, ace::AUTON_DRIVE_SPEED_SLOW, true);
   // 55
 }
@@ -255,6 +306,8 @@ void contact() {
 // FOR EMPIRE!!!!!
 void kamikaze() {
   ace::intakeMotorLeft.spin_percent(ace::launch_speed);
+
+  ace::intakeMotorRight.spin_percent(ace::launch_speed);
 
   drive_chassis(110, ace::AUTON_DRIVE_SPEED_SLOW, true);
 }
