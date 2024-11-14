@@ -81,10 +81,10 @@ namespace ace {
 #define PORT_CHASSIS_R_B -18
 
 /* ------------------------- Other Motors / Devices ------------------------- */
-#define PORT_INTAKE_LEFT -17
+#define PORT_INTAKE_LEFT -16
 #define PORT_INTAKE_RIGHT -6
 
-#define PORT_CHAIN -7
+#define PORT_CHAIN -5
 // dead
 #define PORT_LAUNCHER 21
 #define PORT_ENDGAME_LEFT 11
@@ -102,7 +102,7 @@ namespace ace {
   {INTERNAL_ADI_PORT, 'E'}
 // edngame
 #define PORT_PNEU_INTAKE \
-  {INTERNAL_ADI_PORT, 'G'}
+  {INTERNAL_ADI_PORT, 'H'}
 // back flaps
 
 #define PORT_PNEU_LIFT_1 \
@@ -112,7 +112,7 @@ namespace ace {
   {INTERNAL_ADI_PORT, 'D'}
 // dead
 #define PORT_PNEU_FLAP \
-  {INTERNAL_ADI_PORT, 'H'}
+  {INTERNAL_ADI_PORT, 'G'}
 // front flaps
 #define PORT_SENSOR_LIGHT \
   {INTERNAL_ADI_PORT, 'A'}
@@ -180,6 +180,8 @@ const int led_color_blue = 0x0000aa;
 const int led_color_blue_bright = 0x0000ff;
 
 /* ----------------------- User Control Enabled Bools ----------------------- */
+static bool both_enabled = false;
+static bool both_reverse_enabled = false;
 static bool launcher_standby_enabled = false;
 static bool intake_enabled = false;
 static bool chain_enabled = false;
@@ -203,7 +205,7 @@ static bool launch_speed_toggle_enabled = false;
 // Misc Speeds
 const float ROLLER_SPEED = 100.0;
 const float INTAKE_SPEED = 100.0;
-const float CHAIN_SPEED = 80.0;
+const float CHAIN_SPEED = 75.0;
 const float AUTON_INTAKE_SPEED = 50.0;
 
 // Launcher Speeds
@@ -318,10 +320,10 @@ static Btn_Digi btn_intake_pneu(pros::E_CONTROLLER_DIGITAL_A, cntr_master);
 
 static Btn_Digi btn_endgame(pros::E_CONTROLLER_DIGITAL_UP, cntr_master);
 
-static Btn_Digi btn_intake_toggle(pros::E_CONTROLLER_DIGITAL_L1, cntr_master);
+static Btn_Digi btn_both(pros::E_CONTROLLER_DIGITAL_L1, cntr_master);
 
+static Btn_Digi btn_reverse_both(pros::E_CONTROLLER_DIGITAL_L2, cntr_master);
 // Custom Button for Intake Reverse
-static Btn_Digi btn_intake_reverse(pros::E_CONTROLLER_DIGITAL_L2, cntr_master);
 
 // Custom Button for Launch
 static Btn_Digi btn_launch(pros::E_CONTROLLER_DIGITAL_X, cntr_master);
@@ -335,7 +337,6 @@ static Btn_Digi btn_lift(pros::E_CONTROLLER_DIGITAL_DOWN, cntr_master);
 
 static Btn_Digi btn_auton(pros::E_CONTROLLER_DIGITAL_RIGHT, cntr_master);
 
-static Btn_Digi btn_chain_toggle(pros::E_CONTROLLER_DIGITAL_R1, cntr_master);
 // dead
 /* ---------------------------------- Both ---------------------------------- */
 
@@ -375,8 +376,9 @@ static Btn_Digi btn_launch_speed_decrease(pros::E_CONTROLLER_DIGITAL_R2, cntr_pa
 /* ========================================================================== */
 
 /* --------------------------------- Standby -------------------------------- */
+extern void both(bool enabled);
 
-extern void chain_toggle(bool enabled);
+extern void reverse_both();
 
 extern void intake_pneu_auton();
 
@@ -393,14 +395,6 @@ extern void reverse_launch(float speed);
  * @brief 	runs intake forward
  *
  */
-
-extern void intake_toggle(bool enabled);
-
-/**
- * @brief 	runs intake reverse
- *
- */
-extern void intake_reverse();
 
 /**
  * @brief	launch function, called once per frame

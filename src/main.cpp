@@ -48,6 +48,7 @@ void initialize() {
   ace::intakeMotorLeft.init();
   ace::intakeMotorRight.init();
   ace::launcherMotor.init();
+  ace::chainMotor.init();
   pros::lcd::shutdown();
 
   // Reset rotate sensor position to 0
@@ -85,21 +86,20 @@ void autonomous() {
   ace::rotate.reset_position();
   ace::reset_launcher(ace::LAUNCH_SPEED);
   ace::reset_motors();
-  ace::intake_toggle(ace::intake_enabled);
-  ace::chain_toggle(ace::chain_enabled);
   // ace::auton::contact();
   //  ace::auton::score();
   ace::auton::contact_match();
   ace::intake_pneu_toggle(ace::intake_pneu_enabled);
+
   /*
-  if (curr_auton == "score") {
-    ace::auton::score();
-  } else if (curr_auton == "contact") {
-    ace::auton::contact();
-  } else if (curr_auton == "skills") {
-    ace::auton::skills();
-  }
-  */
+if (curr_auton == "score") {
+  ace::auton::score();
+} else if (curr_auton == "contact") {
+  ace::auton::contact();
+} else if (curr_auton == "skills") {
+  ace::auton::skills();
+}
+*/
 }
 
 /* ========================================================================== */
@@ -116,35 +116,24 @@ void opcontrol() {
 
     /* -------------------------------- Get Input ------------------------------- */
 
+    if (ace::btn_both.get_press()) {
+      ace::both_enabled = !ace::both_enabled;
+      ace::both_reverse_enabled = false;
+    }
+
+    if (ace::btn_reverse_both.get_press()) {
+      ace::both_enabled = false;
+      ace::both_reverse_enabled = true;
+    } else {
+      ace::both_reverse_enabled = false;
+    }
     // chain toggle
 
-    if (ace::btn_chain_toggle.get_press()) {
-      ace::chain_enabled = true;
-    } else {
-      ace::chain_enabled = false;
-    }
-    // Intake Toggle
-    if (ace::btn_intake_toggle.get_press()) {
-      ace::intake_enabled = true;
-      ace::intake_reverse_enabled = false;
-      ace::update_cntr_haptic("-", false);
-
-    } else {
-      ace::intake_enabled = false;
-    }
     if (ace::btn_reverse_launch.get_press()) {
       ace::reverse_launch(ace::LAUNCH_SPEED);
     }
 
     // ace::intake_enabled = ace::btn_intake_toggle.get_press();
-
-    // Intake Reverse
-    if (ace::btn_intake_reverse.get_press()) {
-      ace::intake_enabled = false;
-      ace::intake_reverse_enabled = true;
-    } else {
-      ace::intake_reverse_enabled = false;
-    }
 
     // Launcher
     if (ace::btn_launch.get_press_new()) {
@@ -283,29 +272,6 @@ void opcontrol() {
       // launcher standby
       // ace::launch_standby(ace::launcher_standby_enabled, ace::launch_speed);
 
-      // Intake Reverse
-      if (ace::intake_reverse_enabled) {
-        ace::intake_reverse();
-        break;
-      }
-
-      // Intake Toggle
-      if (ace::intake_enabled) {
-        ace::intake_toggle(true);
-        break;
-      } else {
-        ace::intakeMotorRight.spin_percent(0);
-        ace::intakeMotorLeft.spin_percent(0);
-      }
-
-      if (ace::chain_enabled) {
-        ace::chain_toggle(true);
-        break;
-
-      } else {
-        ace::chainMotor.spin_percent(0);
-      }
-
       if (ace::launch_speed_toggle_enabled) {
         ace::launch_speed_toggle(true);
 
@@ -321,6 +287,21 @@ void opcontrol() {
       ace::intake_pneu_toggle(ace::intake_pneu_enabled);
 
       ace::reverse_endgame_perm(ace::reverse_endgame_perm_enabled);
+
+      if (ace::both_reverse_enabled) {
+        ace::reverse_both();
+        break;
+      }
+
+      // Intake Toggle
+      if (ace::both_enabled) {
+        ace::both(true);
+        break;
+      } else {
+        ace::intakeMotorRight.spin_percent(0);
+        ace::intakeMotorLeft.spin_percent(0);
+        ace::chainMotor.spin_percent(0);
+      }
     }
 
     /* ------------------------- Controller Screen Draw ------------------------- */

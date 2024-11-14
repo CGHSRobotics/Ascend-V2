@@ -48,7 +48,7 @@ util::timer launcher_timer(50);
 
 A_Motor launcherMotor(PORT_LAUNCHER, MOTOR_GEARSET_36, true);
 
-A_Motor intakeMotorLeft(PORT_INTAKE_LEFT, MOTOR_GEARSET_18, false);
+A_Motor intakeMotorLeft(PORT_INTAKE_LEFT, MOTOR_GEARSET_18, true);
 
 A_Motor intakeMotorRight(PORT_INTAKE_RIGHT, MOTOR_GEARSET_18, true);
 
@@ -56,7 +56,7 @@ A_Motor endgameMotorLeft(PORT_ENDGAME_LEFT, MOTOR_GEARSET_36, false);
 
 A_Motor endgameMotorRight(PORT_ENDGAME_RIGHT, MOTOR_GEARSET_36, true);
 
-A_Motor chainMotor(PORT_CHAIN, MOTOR_GEARSET_36, true);
+A_Motor chainMotor(PORT_CHAIN, MOTOR_GEARSET_18, false);
 
 /* ========================================================================= */
 /*                              Class Definitions                             */
@@ -165,6 +165,23 @@ bool curr_launching = false;
 bool reverse_launch_enabled = false;
 util::timer long_launch_timer(650);
 
+void both(bool enabled) {
+  if (enabled) {
+    intakeMotorLeft.spin_percent(-INTAKE_SPEED);
+    chainMotor.spin_percent(-CHAIN_SPEED);
+  }
+
+  else {
+    intakeMotorLeft.spin_percent(0);
+    chainMotor.spin_percent(0);
+  }
+}
+
+void reverse_both() {
+  intakeMotorLeft.spin_percent(INTAKE_SPEED);
+  chainMotor.spin_percent(CHAIN_SPEED);
+}
+
 // launch triball
 void endgame(float speed) {
   endgameMotorLeft.move_voltage(ENDGAME_SPEED * -120);
@@ -268,6 +285,7 @@ void reset_motors() {
   launcherMotor.move_voltage(0);
   intakeMotorLeft.move_voltage(0);
   intakeMotorRight.move_voltage(0);
+  chainMotor.move_voltage(0);
 
   launcher_standby_enabled = false;
 
@@ -325,39 +343,6 @@ void launch_speed_toggle(bool enabled) {
   } else {
     ace::launch_speed = 80.0;
   }
-}
-
-void intake_toggle(bool enabled) {
-  // intake enabled
-  if (enabled) {
-    intakeMotorLeft.spin_percent(-INTAKE_SPEED);
-    intakeMotorRight.spin_percent(-INTAKE_SPEED);
-  }
-
-  // Not enabled
-  else {
-    intake_timer.reset();
-    intakeMotorLeft.spin_percent(0);
-    intakeMotorRight.spin_percent(0);
-  }
-}
-
-void chain_toggle(bool enabled) {
-  // intake enabled
-  if (enabled) {
-    chainMotor.spin_percent(-CHAIN_SPEED);
-
-  }
-
-  // Not enabled
-  else {
-    chainMotor.spin_percent(0);
-  }
-}
-
-void intake_reverse() {
-  intakeMotorLeft.spin_percent(INTAKE_SPEED);
-  intakeMotorRight.spin_percent(INTAKE_SPEED);
 }
 
 /* ------------------------------ Vision Sensor ----------------------------- */
