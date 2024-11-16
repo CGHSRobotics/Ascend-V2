@@ -48,7 +48,7 @@ util::timer launcher_timer(50);
 
 A_Motor launcherMotor(PORT_LAUNCHER, MOTOR_GEARSET_36, true);
 
-A_Motor intakeMotorLeft(PORT_INTAKE_LEFT, MOTOR_GEARSET_18, true);
+A_Motor intakeMotorLeft(PORT_INTAKE_LEFT, MOTOR_GEARSET_6, true);
 
 A_Motor intakeMotorRight(PORT_INTAKE_RIGHT, MOTOR_GEARSET_18, true);
 

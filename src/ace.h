@@ -92,7 +92,7 @@ namespace ace {
 // dead
 #define PORT_VISION 2
 // dead
-#define PORT_IMU 4
+#define PORT_IMU 7
 #define PORT_ROTATION 1
 // dead
 
@@ -205,7 +205,7 @@ static bool launch_speed_toggle_enabled = false;
 // Misc Speeds
 const float ROLLER_SPEED = 100.0;
 const float INTAKE_SPEED = 100.0;
-const float CHAIN_SPEED = 75.0;
+const float CHAIN_SPEED = 95.0;
 const float AUTON_INTAKE_SPEED = 50.0;
 
 // Launcher Speeds
@@ -537,6 +537,11 @@ static std::vector<std::string> auton_selection = {
     "skills", "score", "contact"};
 extern int auton_selection_index;
 
+extern void test();
+extern void red_front();
+extern void blue_back();
+extern void blue_front();
+extern void red_front();
 extern void three_side();
 extern void two_side();
 extern void bar();
